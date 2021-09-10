@@ -1,9 +1,15 @@
 
 navbar: 
-  title: Title
-  left:
-  - text: Main page that links to files
-    href: content.html
-output:
-  html_document:
+  title: "Aaron Salot"
+  right:
+    - text: "About"
+      href: content.html
+    - text: "Blog-Posts"
+    - href: _site/Blog-Posts.html
+    - icon: fa fa-linkedin
+      href: www.linkedin.com/in/aaronsalot
+      
+output: 
+  html_document: 
     theme: flatly
+    
