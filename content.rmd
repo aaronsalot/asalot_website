@@ -1,0 +1,38 @@
+---
+title: "Introduction & Background"
+output:   
+  html_document: 
+    df_print: paged
+
+---
+
+
+
+
+### Introduction 
+
+<br> I was born in Chicago, Illinois in December of '99, and moved back to Mumbai almost a year later. I've spent most of my life in Mumbai - that is where I call home, where most of my family is, and where my beloved cockerspaniel, Casper, is! 
+
+Around the age of 15, I left Mumbai and went to Costa Rica to complete the last two years of my highschool at the United World College of Costa Rica (UWCCR). This was a phenomenal experience since I got the opportunity to interact with 200+ students from over 90 countries - these two years were probably some of the most exciting years as of now. I studied the International Baccalaureate (IB) and focused on Economics, Global Politics, and Biology - I also picked up some Spanish along the way.
+
+After spending two years in Costa Rica, I took a gap-year prior to college and participating in a program called Semester at Sea. Through this program I travelled to over 14 countries over the span of 4 months - another life changing and eyeoepning experience that taught me a lot. 
+
+
+
+### Life Experiences / Education
+
+<br> During my time in India, I initially studied on the Indian Certificate of Secondary Education (ICSE), but soon after I transitioned to an international school where I did IGCSE - which is based on the British education system. At UWC, I continued with the British education system by pursuing IB. 
+
+<br> At Macalester, I've been studying Economics and Data Science. I've taken extensive coursework in International Economics, Macroeconomics, Finance and Behavioral Economics, while contrasting it with Statistical Machine Learning and Modelling, Object Oriented Programming, and Advanced Data Science (currently taking it!). 
+
+<br> Throughout my time at Macalester and at Semester at Sea, I took advantage of the liberal arts education to take courses outside my peripheral view and expand my knowledge base. Some of the interesting classes I've taken include, Ceramics, Cultural Anthropology, Catholicism, Contenporary Concepts in Physcics, and Social Enterpreneurship! 
+
+
+
+### Work 
+
+
+I've attached my resume below - but I firmly believe that there is more to what meets the eye on anyone's resume. While my resume might pigeon hole me into the space of Finance, I'm also interested in studying public health, philosphy, international relations, sustainable and decentralized finance.
+
+
+* [File 1](content/Aaron_Salot_Resume.html)  
