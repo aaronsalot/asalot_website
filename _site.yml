@@ -1,11 +1,15 @@
-
+name:"Website"
+title:" Aaron Salot"
+description: |
+    Aaron's R Collection
+output_dir: "_site"
 navbar: 
   title: "Aaron Salot"
   right:
     - text: "About"
-      href: content.html
+      href: index.html
     - text: "Blog-Posts"
-    - href: _site/Blog-Posts.html
+      href: _site/Blog-Posts.html
     - icon: fa fa-linkedin
       href: www.linkedin.com/in/aaronsalot
       
