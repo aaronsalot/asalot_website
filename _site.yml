@@ -4,7 +4,7 @@ navbar:
   - text: About Me
     href: content.html
   - text: Blog
-    href: BlogPosts.html
+    href: blogPosts.html
   - icon: fa fa-linkedin
     href: https://www.linkedin.com/in/aaronsalot/
 output:
