@@ -4,9 +4,9 @@ navbar:
   - text: About Me
     href: content.html
   - text: Blog
-    href: blog.html
+    href: Blog Posts.html
   - icon: fa fa-linkedin
-    href: https://www.linkedin.com/in/aaron-salot-29ab9015a/
+    href: https://www.linkedin.com/in/aaronsalot/
 output:
   html_document:
     theme: flatly
