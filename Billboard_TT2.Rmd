@@ -1,0 +1,74 @@
+---
+title: "Billboard Tidy Tuesday #2"
+output: html_document
+---
+
+## Aaron Salot
+## 09/21/21
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r cars}
+library(ggplot2)
+library(ggthemes)
+library(dplyr)
+```
+
+
+### Data Download
+
+<br> I decided to go ahead with audio_features since I am more interested in the variables involved and how they relate to the popularity of the song. 
+
+```{r pressure, echo=FALSE}
+
+audio_features <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-09-14/audio_features.csv')
+
+```
+
+
+### Data Filtering
+
+<br> For this section, I am filtering the dataset by 5 artists that fit into "Rap" and "Pop" music. All of these artists are well-known for their music, but I am interested to see whether the danceability of the music they release plays a role on the popularity of it. 
+
+```{r}
+Top_Artists <- audio_features %>%
+        filter(performer %in% c("Drake", "Chris Brown", "Olivia Rodrigo", "Selena Gomez", "Taylor Swift")) %>%
+        group_by(performer) %>%
+        select(spotify_track_popularity, danceability)
+Top_Artists_Rap <- audio_features %>%
+        filter(performer %in% c("Drake", "Chris Brown")) %>%
+        group_by(performer) %>%
+        select(spotify_track_popularity, danceability)
+Top_Artists_Pop <- audio_features %>%
+        filter(performer %in% c("Olivia Rodrigo", "Selena Gomez", "Taylor Swift")) %>%
+        group_by(performer) %>%
+        select(spotify_track_popularity, danceability)
+```
+
+
+### Data Visualization
+
+```{r}
+Top_Artists %>% ggplot(aes(x = danceability, y = spotify_track_popularity, fill = performer)) + 
+        geom_point() + 
+        geom_smooth(method = lm) + 
+        theme_clean()
+
+Top_Artists_Rap %>% ggplot(aes(x = danceability, y = spotify_track_popularity, fill = performer)) + 
+        geom_point() + 
+        geom_smooth(method = lm) + 
+        theme_clean()
+Top_Artists_Pop %>% ggplot(aes(x = danceability, y = spotify_track_popularity, fill = performer)) + 
+        geom_point() + 
+        geom_smooth(method = lm) + 
+        theme_clean()
+```
+<br> The reason I created three graphs is to show how both genres manifest visually together, and then to break them down two further graphs by their genres. In the first graph, we see that danceability and popularity have a position-corelation, but there is one exception to the rule. After breaking it down into two graphs, we see that the Rap artists have a positive corelation with danceability and popularity, while 2/3 of the Pop artists have this same corelation. It would be interesting to further examine - at what circumstances/events are their songs played? If Selena Gomez has a negative corelation (danceability v popularity), is it because her music is played primarily in non-dance locations (i.e for fun, car-drives, on a walk, etc), whereas Taylor Swift and Olivia Rodrigo are played primarily at dance-event (i.e. parties?). 
+
+
+
+
+

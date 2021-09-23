@@ -7,6 +7,12 @@ listing: posts
 <br> This page is work in progress! I will shortly start populating this with some of my work, projects and tidy-tuesday related code as times progresses. Enjoy!
 
 
+<br> Tidy Tuesday 1: Here is the Tidy Tuesday where I looked through the Formula 1 dataset. 
 
+* [Tidy Tuesday](formula/TidyTuesday_Formula1.html) 
+
+<br> Tidy Tuesday 2: Here is the Tidy Tuesday where I looked through the Billboards dataset. 
+
+* [Tidy Tuesday](billboard/Billboard_TT2.html) 
 
 "Without commitment you'll never start. Without consistency you'll never finish." - Denzel Washington

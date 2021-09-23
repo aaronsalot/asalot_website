@@ -11,7 +11,7 @@
 
 
 
-<title>Blogs</title>
+<title>Billboard Tidy Tuesday #2</title>
 
 <script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -267,21 +267,87 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Blogs</h1>
+<h1 class="title toc-ignore">Billboard Tidy Tuesday #2</h1>
 
 </div>
 
 
-<p><br> This page is work in progress! I will shortly start populating this with some of my work, projects and tidy-tuesday related code as times progresses. Enjoy!</p>
-<p><br> Tidy Tuesday 1: Here is the Tidy Tuesday where I looked through the Formula 1 dataset.</p>
-<ul>
-<li><a href="formula/TidyTuesday_Formula1.html">Tidy Tuesday</a></li>
-</ul>
-<p><br> Tidy Tuesday 2: Here is the Tidy Tuesday where I looked through the Billboards dataset.</p>
-<ul>
-<li><a href="billboard/Billboard_TT2.html">Tidy Tuesday</a></li>
-</ul>
-<p>“Without commitment you’ll never start. Without consistency you’ll never finish.” - Denzel Washington</p>
+<div id="aaron-salot" class="section level2">
+<h2>Aaron Salot</h2>
+</div>
+<div id="section" class="section level2">
+<h2>09/21/21</h2>
+<pre class="r"><code>library(ggplot2)
+library(ggthemes)
+library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<div id="data-download" class="section level3">
+<h3>Data Download</h3>
+<p><br> I decided to go ahead with audio_features since I am more interested in the variables involved and how they relate to the popularity of the song.</p>
+<pre><code>## Rows: 29503 Columns: 22</code></pre>
+<pre><code>## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr  (7): song_id, performer, song, spotify_genre, spotify_track_id, spotify...
+## dbl (14): spotify_track_duration_ms, danceability, energy, key, loudness, mo...
+## lgl  (1): spotify_track_explicit</code></pre>
+<pre><code>## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div id="data-filtering" class="section level3">
+<h3>Data Filtering</h3>
+<p><br> For this section, I am filtering the dataset by 5 artists that fit into “Rap” and “Pop” music. All of these artists are well-known for their music, but I am interested to see whether the danceability of the music they release plays a role on the popularity of it.</p>
+<pre class="r"><code>Top_Artists &lt;- audio_features %&gt;%
+        filter(performer %in% c(&quot;Drake&quot;, &quot;Chris Brown&quot;, &quot;Olivia Rodrigo&quot;, &quot;Selena Gomez&quot;, &quot;Taylor Swift&quot;)) %&gt;%
+        group_by(performer) %&gt;%
+        select(spotify_track_popularity, danceability)</code></pre>
+<pre><code>## Adding missing grouping variables: `performer`</code></pre>
+<pre class="r"><code>Top_Artists_Rap &lt;- audio_features %&gt;%
+        filter(performer %in% c(&quot;Drake&quot;, &quot;Chris Brown&quot;)) %&gt;%
+        group_by(performer) %&gt;%
+        select(spotify_track_popularity, danceability)</code></pre>
+<pre><code>## Adding missing grouping variables: `performer`</code></pre>
+<pre class="r"><code>Top_Artists_Pop &lt;- audio_features %&gt;%
+        filter(performer %in% c(&quot;Olivia Rodrigo&quot;, &quot;Selena Gomez&quot;, &quot;Taylor Swift&quot;)) %&gt;%
+        group_by(performer) %&gt;%
+        select(spotify_track_popularity, danceability)</code></pre>
+<pre><code>## Adding missing grouping variables: `performer`</code></pre>
+</div>
+<div id="data-visualization" class="section level3">
+<h3>Data Visualization</h3>
+<pre class="r"><code>Top_Artists %&gt;% ggplot(aes(x = danceability, y = spotify_track_popularity, fill = performer)) + 
+        geom_point() + 
+        geom_smooth(method = lm) + 
+        theme_clean()</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<pre><code>## Warning: Removed 10 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 10 rows containing missing values (geom_point).</code></pre>
+<p><img src="Billboard_TT2_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>Top_Artists_Rap %&gt;% ggplot(aes(x = danceability, y = spotify_track_popularity, fill = performer)) + 
+        geom_point() + 
+        geom_smooth(method = lm) + 
+        theme_clean()</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<pre><code>## Warning: Removed 8 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 8 rows containing missing values (geom_point).</code></pre>
+<p><img src="Billboard_TT2_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
+<pre class="r"><code>Top_Artists_Pop %&gt;% ggplot(aes(x = danceability, y = spotify_track_popularity, fill = performer)) + 
+        geom_point() + 
+        geom_smooth(method = lm) + 
+        theme_clean()</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<pre><code>## Warning: Removed 2 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
+<p><img src="Billboard_TT2_files/figure-html/unnamed-chunk-2-3.png" width="672" /> <br> The reason I created three graphs is to show how both genres manifest visually together, and then to break them down two further graphs by their genres. In the first graph, we see that danceability and popularity have a position-corelation, but there is one exception to the rule. After breaking it down into two graphs, we see that the Rap artists have a positive corelation with danceability and popularity, while 2/3 of the Pop artists have this same corelation. It would be interesting to further examine - at what circumstances/events are their songs played? If Selena Gomez has a negative corelation (danceability v popularity), is it because her music is played primarily in non-dance locations (i.e for fun, car-drives, on a walk, etc), whereas Taylor Swift and Olivia Rodrigo are played primarily at dance-event (i.e. parties?).</p>
+</div>
+</div>
 
 
 
