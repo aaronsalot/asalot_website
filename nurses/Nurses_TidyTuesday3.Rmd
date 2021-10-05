@@ -1,0 +1,83 @@
+---
+title: "Nurses Tidy Tuesday"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+library(ggplot2)
+library(ggthemes)
+library(tidytuesdayR)
+library(tidyverse)
+library(ggmap)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+# Get the Data
+
+# Read in with tidytuesdayR package 
+# Install from CRAN via: install.packages("tidytuesdayR")
+# This loads the readme and all the datasets for the week of interest
+
+nurses <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-10-05/nurses.csv')
+
+```
+
+### Data Filtering
+
+<br> After looking at the top 5 states with the highest Annual Average Salary, I filtered the data-set to select only these 5 states. I call this new dataset "States_5" which is the 5 Highest States and a mean "Annual Salary Average".
+
+```{r}
+states_5 <- nurses %>%
+ filter(State %in% c("California", "Hawaii", "Massachusettes", "Oregon", "Alaska", "District of Columbia")) %>%
+ group_by(State) %>%
+ summarise(AvgSal = mean(`Annual Salary Avg`)) %>%
+ arrange(AvgSal)
+```
+
+
+## Data Visualization 1
+
+<br> The graph below helps us visualise the differences in Average Salaries across these 5 states. We can see that California has the highest, followed by Hawaii, Alaska, Oregon, and DC that lag slightly. 
+
+```{r}
+states_5 %>%
+ ggplot(aes(x = State,y = AvgSal, fill = State)) + geom_col() +
+ labs(title = "States with Highest Average Salaries for Nurses",
+ x = "State",
+ y = "Average Salary") +
+  theme_clean() + theme(legend.position = "none")
+
+nurses <- nurses %>%
+  mutate(state_lower = tolower(State))
+```
+
+## Data Visualization 
+
+<br> The graph below helps visual the entire country and see the differences in Average Salary across states. California leads with the highest, and we can see patches of dominance in the New England region, along with Washington, Oregon, and North Dakota. 
+
+```{r}
+states_map <- map_data("state")
+
+nurses %>%
+  ggplot(aes(fill=`Annual Salary Avg`)) +
+  geom_map(aes(map_id=state_lower), color='gray', size=0.3, map=states_map) +
+  expand_limits(x=states_map$long, y=states_map$lat) +
+  theme_map() + 
+  scale_fill_gradient(low = "azure", high = "blue") 
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
