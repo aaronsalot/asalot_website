@@ -26,7 +26,7 @@ listing: posts
 
 <br> Tidy Tuesday 5: Here is the Tidy Tuesday where I looked through the Ultra Trail Running dataset: 
 
-* [Tidy Tuesday](race/TidyTuesday_5.html) 
+* [Tidy Tuesday](race/Tidy-Tuesday-5.html) 
 
 
 "Without commitment you'll never start. Without consistency you'll never finish." - Denzel Washington
