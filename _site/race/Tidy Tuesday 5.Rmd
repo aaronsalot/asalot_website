@@ -1,0 +1,59 @@
+---
+title: "Tidy Tuesday 5"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Loading the packages
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(tidyverse)
+library(lubridate)
+library(ggthemes)
+```
+
+## Loading the Ultra Rankings Data
+
+```{r pressure, echo=FALSE}
+
+ultra_rankings <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-10-26/ultra_rankings.csv')
+race <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-10-26/race.csv')
+
+
+```
+## Data Filtering & Mutations
+
+<br> In this section of the code, I create age categories for every 10-year increment between 20 and 59 and classify them in groups between 1 - 4. I also mutate the time_in_seconds variable to transform it into minutes and then  hours so it can be easily visualized on the group. 
+
+```{r}
+ultra_rankings_final <- ultra_rankings %>%
+                 select(-rank,-race_year_id) %>%
+                 mutate(age_group = case_when(age >= 50 & age <= 59 ~ '4',
+                                              age >= 40 & age <= 49 ~ '3',
+                                              age >= 30 & age <= 39 ~ '2',
+                                              age >= 20 & age <= 29 ~ '1')) %>% 
+                mutate(time_in_mins = time_in_seconds/60,
+                       Time_Final = time_in_mins/60) %>%
+                filter(age_group %in% c("1", "2", "3","4"))
+```
+
+
+## Data Visualization 
+
+<br> The graph below looks at the mean, median and range of the racing time across each age category. To my surprise, the mean time taken is very similar across each age category, however we can see how the latter quartile of runners from the age 1 category can finished their race within ~60 hours, while the same quartile of runners for the other categories took ~10-20 hours longer. When look further into the data, we can see how the faster runners have their time-recorded, while the lower ranking runners do not have their running time recorded. This would imply that the data is biased towards the higher rank runners, which also explains why the mean race-time is similar across each age category. 
+
+
+```{r}
+ultra_rankings_final %>% group_by(age_group) %>%
+  ggplot(aes(y = age_group, x = Time_Final, fill=age_group)) + 
+  geom_boxplot() + labs(title = "Racing Times Across Age Groups", 
+                      y = "Age Groups", x = "Time",
+                      caption = " Source: Aaron Salot, Macalester College") + theme_economist() +
+                      theme(legend.position = "none")
+```
+

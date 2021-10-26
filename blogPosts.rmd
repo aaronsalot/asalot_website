@@ -15,8 +15,18 @@ listing: posts
 
 * [Tidy Tuesday](billboard/Billboard_TT2.html) 
 
-"Without commitment you'll never start. Without consistency you'll never finish." - Denzel Washington
 
 <br> Tidy Tuesday 3: Here is the Tidy Tuesday where I looked through the Nurses dataset: 
 
-* [Tidy Tuesday](nurses/Nurses_TidyTuesday3.html) 
+* [Tidy Tuesday](nurses/Nures_TidyTuesday3.html) 
+
+<br> Tidy Tuesday 4: Here is the Tidy Tuesday where I looked through the Garden 2021 dataset: 
+
+* [Tidy Tuesday](garden/TidyTuesday_4.html) 
+
+<br> Tidy Tuesday 5: Here is the Tidy Tuesday where I looked through the Ultra Trail Running dataset: 
+
+* [Tidy Tuesday](race/TidyTuesday_5.html) 
+
+
+"Without commitment you'll never start. Without consistency you'll never finish." - Denzel Washington

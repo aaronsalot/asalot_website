@@ -1,0 +1,44 @@
+---
+title: "Aaron's Tidy Tuesday 4"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+## Loading Libraries
+```{r}
+library(dplyr)
+library(ggplot2)
+library(tidyverse)
+library(googlesheets4)
+library(lubridate)
+library(ggthemes)
+```
+
+
+## Loading Lisa's 2021 Garden Dataset
+
+```{r}
+gs4_deauth() 
+
+harvest_2021 <- read_sheet("https://docs.google.com/spreadsheets/d/1DU6dpxrbPGW2oJHQ6TG_xibazoGhvmRcqk2iPGOaRUI/edit?usp=sharing") %>% mutate(date = ymd(date))
+```
+
+<br> I initially wanted to explore pumpkins since we're close to Halloween and I haven't ever gone pumpkin picking or celebrated Halloween, but I realised the dataset only includes 3 varieties of Pumpkins and decided to go with Tomatoes. To my surprise, I never thought there were so many varities of tomatoes - my knowledge was limited to cherry tomatoes and "regular" tomatoes. The following graph shows the variety of tomatoes and the number of times they are harvested - Early Girl and Sweet 100 Cherry are among the most frequently harvested varieties. 
+
+```{r}
+harvest_2021 %>% filter(vegetable %in% c("tomatoes")) %>%
+                 group_by(variety) %>% 
+                 summarise(weight = n()) %>% 
+                 ggplot(aes(x = reorder(variety, weight), y = weight, , fill = variety)) + 
+                 geom_bar(stat = "identity") + coord_flip() + 
+                 labs(title = "Harvest rate for different varieties of Tomatoes", 
+                      y = "Number of times harvested", x = "Varieties of Tomatoes",
+                      caption = " Source: Aaron Salot, Macalester College") + theme_clean() +
+                      theme(legend.position = "none")
+```
+

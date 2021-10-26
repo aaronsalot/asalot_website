@@ -1,0 +1,11 @@
+---
+title: "Blogs"
+listing: posts
+---
+
+
+<br> This page is work in progress! I will shortly start populating this with some of my work, projects and tidy-tuesday related code as times progresses. Enjoy!
+
+
+
+"Without commitment you'll never start. Without consistency you'll never finish." - Denzel Washington
