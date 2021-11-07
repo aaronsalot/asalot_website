@@ -1,0 +1,89 @@
+---
+title: "Function Friday problems #2"
+author: "NAME"
+output: 
+  html_document:
+    toc: TRUE
+    toc_float: TRUE
+    code_download: true
+---
+
+## sf
+
+```{r}
+library(tidyverse)
+library(tidycensus)
+library(tigris)
+library(sf)         
+library(rgdal)       
+library(scales)       
+library(RColorBrewer)
+library(gridExtra)    
+library(ncdf4) 
+library(raster) 
+
+```
+
+1. Using geom_sf from the NC Data, create a plot showing the difference in SID cases for each county from 1974 to 1979 (1979 - 1974 cases).  You will need to use mutate to create a new variable.  Change the background to just white and adjust the gradient for the fill value to represent green as the low value and red as the high value.  
+
+```{r}
+nc <- st_read(system.file("gpkg/nc.gpkg", package="sf"), quiet = TRUE)
+```
+
+2.  (See the image in the sf materials on the moodle page). Using the image below from the census data:  If we wanted to look at census tracts from a different area, how would we change the projection using sf notation?  Note: the answer does not require code, just a reference to where to make a change in the code for this graph.
+
+```{r, eval = FALSE}
+# AMERICAN COMMUNITY SURVEY
+Eugene <- get_acs(state = "OR", county = "Lane", geography = "tract",
+                  variables = "B19013_001", geometry = TRUE)
+
+head(Eugene)
+
+Eugene %>%
+  ggplot(aes(fill = estimate)) +
+  geom_sf(color = NA) +
+  coord_sf(crs = 26910) +
+  scale_fill_viridis_c(option = "magma")
+
+```
+
+3.  Using tigris notation, visualize your hometown/county with two different layers (i.e. roads, water_areas, or others listed in documentation).  Produce two separate graphs; no API key is needed. 
+
+```{r}
+options(tigris_class = "sf")
+options(tigris_use_cache = TRUE)
+options(geometry = TRUE)
+```
+
+```{r}
+
+```
+
+
+## stringr
+
+```{r}
+library(titanic)
+```
+
+```{r}
+titanic <- titanic_train
+```
+
+
+1. Use the titanic data set to count the number of 'a' in the names.
+
+2. Cande wants to translate the Titanic Data set from english to spanish. She needs to change the Sex variable from displaying ‘male’ and ‘female’ to display ‘masculino’ and femenino’. What code should she use? 
+*Note: Even when now we recognize the existence of a spectrum in sex and gender fluidity, at the time of the Titanic, there were only two sex categories. That is why we use those categories in the data set. 
+
+3. Create a new variable called ‘story’ that contains a string telling us the ticket string of each passenger with the following information:
+1) The name of the passenger 
+2) The ticket number
+
+4. Using the titanic data provided above, using str_match() to find names that contain "Mrs.". Print out the first five names found. 
+
+
+
+
+
+

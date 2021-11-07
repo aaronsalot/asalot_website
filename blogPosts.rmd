@@ -18,7 +18,7 @@ listing: posts
 
 <br> Tidy Tuesday 3: Here is the Tidy Tuesday where I looked through the Nurses dataset: 
 
-* [Tidy Tuesday](nurses/Nures_TidyTuesday3.html) 
+* [Tidy Tuesday](nurses/Nurses_TidyTuesday3.html) 
 
 <br> Tidy Tuesday 4: Here is the Tidy Tuesday where I looked through the Garden 2021 dataset: 
 
